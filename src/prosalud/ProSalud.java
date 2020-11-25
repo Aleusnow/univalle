@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package prosalud;
+import Vista.Principal;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.*;
@@ -18,6 +19,8 @@ public class ProSalud {
      */
     public static void main(String[] args) {
         
+        Principal vista = new Principal();
+        vista.setVisible(true);
         
         
         
