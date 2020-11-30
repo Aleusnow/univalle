@@ -47,6 +47,7 @@ public class Principal extends javax.swing.JFrame {
         listadopro = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1600, 1000));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -56,17 +57,12 @@ public class Principal extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 424, Short.MAX_VALUE)
+            .addGap(0, 774, Short.MAX_VALUE)
         );
 
         admin.setText("Administración");
 
         distribuidores.setText("Distribuidores");
-        distribuidores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                distribuidoresMouseClicked(evt);
-            }
-        });
         distribuidores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 distribuidoresActionPerformed(evt);
@@ -91,6 +87,11 @@ public class Principal extends javax.swing.JFrame {
         admin.add(vendedores);
 
         comisiones.setText("Comisiones");
+        comisiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comisionesActionPerformed(evt);
+            }
+        });
         admin.add(comisiones);
 
         jMenuBar1.add(admin);
@@ -98,9 +99,19 @@ public class Principal extends javax.swing.JFrame {
         inventario.setText("Inventario");
 
         productos.setText("Productos");
+        productos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productosActionPerformed(evt);
+            }
+        });
         inventario.add(productos);
 
         materiaprima.setText("Materia Prima");
+        materiaprima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materiaprimaActionPerformed(evt);
+            }
+        });
         inventario.add(materiaprima);
 
         jMenuBar1.add(inventario);
@@ -108,12 +119,27 @@ public class Principal extends javax.swing.JFrame {
         procesos.setText("Procesos");
 
         produccion.setText("Producción");
+        produccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                produccionActionPerformed(evt);
+            }
+        });
         procesos.add(produccion);
 
         ingresomatpri.setText("Ingreso Materia Prima");
+        ingresomatpri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresomatpriActionPerformed(evt);
+            }
+        });
         procesos.add(ingresomatpri);
 
         venta.setText("Venta");
+        venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ventaActionPerformed(evt);
+            }
+        });
         procesos.add(venta);
 
         jMenuBar1.add(procesos);
@@ -124,11 +150,6 @@ public class Principal extends javax.swing.JFrame {
         interno.add(listadoven);
 
         listadomatpri.setText("Listado Materias Primas");
-        listadomatpri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listadomatpriActionPerformed(evt);
-            }
-        });
         interno.add(listadomatpri);
 
         listadopro.setText("Listado Productos");
@@ -153,23 +174,9 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void distribuidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distribuidoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_distribuidoresActionPerformed
-
-    private void vendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendedoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vendedoresActionPerformed
-
-    private void clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientesActionPerformed
-
-    private void listadomatpriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listadomatpriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listadomatpriActionPerformed
-
-    private void distribuidoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_distribuidoresMouseClicked
         VentanaDistri distri = new VentanaDistri();
+        
+        System.out.println("Le diste click a distribuidor");
         
         int x = (escritorio.getWidth() / 2) - distri.getWidth() /2;
         int y = (escritorio.getHeight() / 2) - distri.getHeight() /2;
@@ -182,8 +189,151 @@ public class Principal extends javax.swing.JFrame {
             distri.setLocation(x,y);
             distri.setVisible(true);
         }
+    }//GEN-LAST:event_distribuidoresActionPerformed
+
+    private void vendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendedoresActionPerformed
+         VentanaVen ven = new VentanaVen();
         
-    }//GEN-LAST:event_distribuidoresMouseClicked
+        System.out.println("Le diste click a vendedor");
+        
+        int x = (escritorio.getWidth() / 2) - ven.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - ven.getHeight() /2;
+
+        if (ven.isShowing()){
+            ven.setLocation(x,y);
+        }
+        else{
+            escritorio.add(ven);
+            ven.setLocation(x,y);
+            ven.setVisible(true);
+        }
+    }//GEN-LAST:event_vendedoresActionPerformed
+
+    private void clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesActionPerformed
+        VentanaCli cli = new VentanaCli();
+        
+        System.out.println("Le diste click a cliente");
+        
+        int x = (escritorio.getWidth() / 2) - cli.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - cli.getHeight() /2;
+
+        if (cli.isShowing()){
+            cli.setLocation(x,y);
+        }
+        else{
+            escritorio.add(cli);
+            cli.setLocation(x,y);
+            cli.setVisible(true);
+        }
+    }//GEN-LAST:event_clientesActionPerformed
+
+    private void comisionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesActionPerformed
+        VentanaComi comi = new VentanaComi();
+        
+        System.out.println("Le diste click a comisión");
+        
+        int x = (escritorio.getWidth() / 2) - comi.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - comi.getHeight() /2;
+
+        if (comi.isShowing()){
+            comi.setLocation(x,y);
+        }
+        else{
+            escritorio.add(comi);
+            comi.setLocation(x,y);
+            comi.setVisible(true);
+        }
+    }//GEN-LAST:event_comisionesActionPerformed
+
+    private void productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosActionPerformed
+        VentanaProductos pro = new VentanaProductos();
+        
+        System.out.println("Le diste click a producto");
+        
+        int x = (escritorio.getWidth() / 2) - pro.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - pro.getHeight() /2;
+
+        if (pro.isShowing()){
+            pro.setLocation(x,y);
+        }
+        else{
+            escritorio.add(pro);
+            pro.setLocation(x,y);
+            pro.setVisible(true);
+        }
+    }//GEN-LAST:event_productosActionPerformed
+
+    private void materiaprimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materiaprimaActionPerformed
+        VentanaMatPri matpri = new VentanaMatPri();
+        
+        System.out.println("Le diste click a materia prima");
+        
+        int x = (escritorio.getWidth() / 2) - matpri.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - matpri.getHeight() /2;
+
+        if (matpri.isShowing()){
+            matpri.setLocation(x,y);
+        }
+        else{
+            escritorio.add(matpri);
+            matpri.setLocation(x,y);
+            matpri.setVisible(true);
+        }
+    }//GEN-LAST:event_materiaprimaActionPerformed
+
+    private void produccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produccionActionPerformed
+        VentanaProduccion produ = new VentanaProduccion();
+        
+        System.out.println("Le diste click a produccion");
+        
+        int x = (escritorio.getWidth() / 2) - produ.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - produ.getHeight() /2;
+
+        if (produ.isShowing()){
+            produ.setLocation(x,y);
+        }
+        else{
+            escritorio.add(produ);
+            produ.setLocation(x,y);
+            produ.setVisible(true);
+        }
+    }//GEN-LAST:event_produccionActionPerformed
+
+    private void ingresomatpriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresomatpriActionPerformed
+        VentanaIngMatPri ing = new VentanaIngMatPri();
+        
+        System.out.println("Le diste click a ingreso materia prima");
+        
+        int x = (escritorio.getWidth() / 2) - ing.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - ing.getHeight() /2;
+
+        if (ing.isShowing()){
+            ing.setLocation(x,y);
+        }
+        else{
+            escritorio.add(ing);
+            ing.setLocation(x,y);
+            ing.setVisible(true);
+        }
+    }//GEN-LAST:event_ingresomatpriActionPerformed
+
+    private void ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventaActionPerformed
+        VentanaVenta vent = new VentanaVenta();
+        
+        System.out.println("Le diste click a venta");
+        
+        int x = (escritorio.getWidth() / 2) - vent.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - vent.getHeight() /2;
+
+        if (vent.isShowing()){
+            vent.setLocation(x,y);
+        }
+        else{
+            escritorio.add(vent);
+            vent.setLocation(x,y);
+            vent.setVisible(true);
+        }
+    }//GEN-LAST:event_ventaActionPerformed
 
     /**
      * @param args the command line arguments

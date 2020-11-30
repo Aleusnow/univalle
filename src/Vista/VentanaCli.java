@@ -9,12 +9,12 @@ package Vista;
  *
  * @author Amelia Wolf
  */
-public class VentanaDistri extends javax.swing.JInternalFrame {
+public class VentanaCli extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form distribuidores
+     * Creates new form VentanaCli
      */
-    public VentanaDistri() {
+    public VentanaCli() {
         initComponents();
     }
 
@@ -27,8 +27,7 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        pnldistribuidor = new javax.swing.JPanel();
+        pnlcliente = new javax.swing.JPanel();
         lblnombre = new javax.swing.JLabel();
         lblcc = new javax.swing.JLabel();
         lbltelefono = new javax.swing.JLabel();
@@ -41,12 +40,13 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
         btnactualizar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbldistribuidores = new javax.swing.JTable();
+        tblclientes = new javax.swing.JTable();
 
         setClosable(true);
-        setTitle("Distribuidores");
+        setTitle("Clientes");
+        setPreferredSize(new java.awt.Dimension(541, 407));
 
-        pnldistribuidor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Datos Distribuidor")));
+        pnlcliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Datos Cliente")));
 
         lblnombre.setText("Nombre:");
 
@@ -68,50 +68,50 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
 
         btneliminar.setText("Eliminar");
 
-        javax.swing.GroupLayout pnldistribuidorLayout = new javax.swing.GroupLayout(pnldistribuidor);
-        pnldistribuidor.setLayout(pnldistribuidorLayout);
-        pnldistribuidorLayout.setHorizontalGroup(
-            pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnldistribuidorLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlclienteLayout = new javax.swing.GroupLayout(pnlcliente);
+        pnlcliente.setLayout(pnlclienteLayout);
+        pnlclienteLayout.setHorizontalGroup(
+            pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlclienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lbltelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblcc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblnombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbldireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtcc)
                     .addComponent(txttelefono)
                     .addComponent(txtdireccion)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnactualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnagregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnldistribuidorLayout.setVerticalGroup(
-            pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnldistribuidorLayout.createSequentialGroup()
+        pnlclienteLayout.setVerticalGroup(
+            pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlclienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblnombre)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblcc)
                     .addComponent(txtcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltelefono)
                     .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbldireccion)
                     .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(pnldistribuidorLayout.createSequentialGroup()
+            .addGroup(pnlclienteLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(btnagregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,7 +120,7 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
                 .addComponent(btneliminar))
         );
 
-        tbldistribuidores.setModel(new javax.swing.table.DefaultTableModel(
+        tblclientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -146,11 +146,8 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbldistribuidores);
-        if (tbldistribuidores.getColumnModel().getColumnCount() > 0) {
-            tbldistribuidores.getColumnModel().getColumn(0).setMaxWidth(80);
-            tbldistribuidores.getColumnModel().getColumn(1).setMinWidth(120);
-        }
+        tblclientes.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jScrollPane1.setViewportView(tblclientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,24 +155,20 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(45, 45, 45)
-                        .addComponent(pnldistribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 48, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(pnlcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnldistribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -191,14 +184,13 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnactualizar;
     private javax.swing.JButton btnagregar;
     private javax.swing.JButton btneliminar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblcc;
     private javax.swing.JLabel lbldireccion;
     private javax.swing.JLabel lblnombre;
     private javax.swing.JLabel lbltelefono;
-    private javax.swing.JPanel pnldistribuidor;
-    private javax.swing.JTable tbldistribuidores;
+    private javax.swing.JPanel pnlcliente;
+    private javax.swing.JTable tblclientes;
     private javax.swing.JTextField txtcc;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtnombre;
