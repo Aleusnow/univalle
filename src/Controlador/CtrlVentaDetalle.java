@@ -5,12 +5,15 @@
  */
 package Controlador;
 
+import modelo.VentaDetalleDAO;
+
 /**
  *
  * @author Amelia Wolf
  */
-public class CtrlIngreso {
+public class CtrlVentaDetalle {
     
+    private VentaDetalleDAO modeloVentaDet;
 }
 
 

@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import Controlador.*;
+import modelo.*;
+
 /**
  *
  * @author Amelia Wolf
@@ -211,6 +214,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesActionPerformed
         VentanaCli cli = new VentanaCli();
+        ClienteDAO cliDao = new ClienteDAO();
         
         System.out.println("Le diste click a cliente");
         
@@ -225,6 +229,9 @@ public class Principal extends javax.swing.JFrame {
             cli.setLocation(x,y);
             cli.setVisible(true);
         }
+        
+        CtrlCliente controlCli = new CtrlCliente(cli,cliDao);
+        
     }//GEN-LAST:event_clientesActionPerformed
 
     private void comisionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesActionPerformed

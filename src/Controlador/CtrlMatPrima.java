@@ -5,12 +5,13 @@
  */
 package Controlador;
 
+import modelo.MateriaPrimaDAO;
+
 /**
  *
  * @author Amelia Wolf
  */
-public class CtrlIngreso {
+public class CtrlMatPrima {
     
+    private MateriaPrimaDAO modeloMatPri;
 }
-
-

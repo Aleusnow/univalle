@@ -56,12 +56,6 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
 
         lbldireccion.setText("Dirección:");
 
-        txtnombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreActionPerformed(evt);
-            }
-        });
-
         btnagregar.setText("Agregar");
 
         btnactualizar.setText("Actualizar");
@@ -181,10 +175,6 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
