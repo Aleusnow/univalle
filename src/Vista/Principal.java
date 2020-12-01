@@ -178,6 +178,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void distribuidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distribuidoresActionPerformed
         VentanaDistri distri = new VentanaDistri();
+        DistribuidorDAO distriDao = new DistribuidorDAO();
         
         System.out.println("Le diste click a distribuidor");
         
@@ -192,10 +193,13 @@ public class Principal extends javax.swing.JFrame {
             distri.setLocation(x,y);
             distri.setVisible(true);
         }
+        
+        CtrlDistribuidor controlDis = new CtrlDistribuidor(distri,distriDao);
     }//GEN-LAST:event_distribuidoresActionPerformed
 
     private void vendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendedoresActionPerformed
          VentanaVen ven = new VentanaVen();
+         VendedorDAO venDao = new VendedorDAO();
         
         System.out.println("Le diste click a vendedor");
         
@@ -210,6 +214,8 @@ public class Principal extends javax.swing.JFrame {
             ven.setLocation(x,y);
             ven.setVisible(true);
         }
+        
+        CtrlVendedor controlVen = new CtrlVendedor(ven, venDao);
     }//GEN-LAST:event_vendedoresActionPerformed
 
     private void clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesActionPerformed

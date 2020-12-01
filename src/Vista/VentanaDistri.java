@@ -5,17 +5,26 @@
  */
 package Vista;
 
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Distribuidor;
+
 /**
  *
  * @author Amelia Wolf
  */
 public class VentanaDistri extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel mTabla;
+    
     /**
      * Creates new form distribuidores
      */
     public VentanaDistri() {
         initComponents();
+        mTabla = (DefaultTableModel) tbldistribuidores.getModel();
     }
 
     /**
@@ -40,6 +49,8 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
         btnagregar = new javax.swing.JButton();
         btnactualizar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
+        lblcodigo = new javax.swing.JLabel();
+        txtcodigo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbldistribuidores = new javax.swing.JTable();
 
@@ -59,67 +70,85 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
         btnagregar.setText("Agregar");
 
         btnactualizar.setText("Actualizar");
+        btnactualizar.setEnabled(false);
 
         btneliminar.setText("Eliminar");
+        btneliminar.setEnabled(false);
+
+        lblcodigo.setText("Codigo:");
+
+        txtcodigo.setEditable(false);
+        txtcodigo.setEnabled(false);
 
         javax.swing.GroupLayout pnldistribuidorLayout = new javax.swing.GroupLayout(pnldistribuidor);
         pnldistribuidor.setLayout(pnldistribuidorLayout);
         pnldistribuidorLayout.setHorizontalGroup(
             pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnldistribuidorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lbltelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblcc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblnombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbldireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnldistribuidorLayout.createSequentialGroup()
+                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnldistribuidorLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lbltelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblcc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblnombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbldireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(pnldistribuidorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblcodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtcc)
                     .addComponent(txttelefono)
                     .addComponent(txtdireccion)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                    .addComponent(txtcodigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnactualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnagregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnldistribuidorLayout.setVerticalGroup(
             pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnldistribuidorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblnombre)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnldistribuidorLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblcc)
-                    .addComponent(txtcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltelefono)
-                    .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblcodigo)
+                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbldireccion)
-                    .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(pnldistribuidorLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(btnagregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnactualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btneliminar))
+                    .addGroup(pnldistribuidorLayout.createSequentialGroup()
+                        .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblnombre)
+                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblcc)
+                            .addComponent(txtcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbltelefono)
+                            .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnldistribuidorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbldireccion)
+                            .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnldistribuidorLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnagregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnactualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btneliminar)))
+                .addContainerGap())
         );
 
         tbldistribuidores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Codigo", "Nombre", "CC", "Telefono", "Direccion"
@@ -140,6 +169,11 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbldistribuidores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbldistribuidoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbldistribuidores);
         if (tbldistribuidores.getColumnModel().getColumnCount() > 0) {
             tbldistribuidores.getColumnModel().getColumn(0).setMaxWidth(80);
@@ -151,32 +185,142 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(45, 45, 45)
-                        .addComponent(pnldistribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 48, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(pnldistribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnldistribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnldistribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+     //Haciendo Listeners de los txt y btn
+    public int getCodigo() {
+        return Integer.parseInt(txtcodigo.getText().trim());
+    }
 
+    public String getNombre() {
+        return txtnombre.getText().trim();
+    }
 
+    public String getCc() {
+        return txtcc.getText().trim();
+    }
+
+    public String getTelefono() {
+        return txttelefono.getText().trim();
+    }
+
+    public String getDireccion() {
+        return txtdireccion.getText().trim();
+    }
+
+    public void addListenerAgregar(ActionListener listen) {
+        btnagregar.addActionListener(listen);
+    }
+
+    public void addListenerBtnActualizar(ActionListener listen) {
+        btnactualizar.addActionListener(listen);
+    }
+
+    public void addListenerEliminar(ActionListener listen) {
+        btneliminar.addActionListener(listen);
+    }
+    
+    //Vaciar la tabla 
+    public void limpiarTabla() {
+        for (int i = mTabla.getRowCount() - 1; i >= 0; i--) {
+            mTabla.removeRow(i);
+
+        }
+    }
+
+    //"Crear" tabla de distribuidores
+    public void cargarDistribuidores(ArrayList<Distribuidor> listaDis) {
+        limpiarTabla();
+        for (int i = 0; i < listaDis.size(); i++) {
+            mTabla.addRow(new Object[]{
+                listaDis.get(i).getCodigoDis(),
+                listaDis.get(i).getNombreDis(),
+                listaDis.get(i).getcCDis(),
+                listaDis.get(i).getTelefonoDis(),
+                listaDis.get(i).getDireccionDis(),});
+        }
+    }
+
+    public boolean revisaDatos() {
+        if (txtnombre.getText().replaceAll(" ", "").isEmpty() || txtcc.getText().replaceAll(" ", "").isEmpty()
+                || txttelefono.getText().replaceAll(" ", "").isEmpty() || txtdireccion.getText().replaceAll(" ", "").isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Datos incompletos, por favor llene todos lo campos");
+            return false;
+        }
+        return true;
+    }
+    
+    public void cancelarAction() {
+        btneliminar.setEnabled(false);
+        btnactualizar.setEnabled(false);
+        btnagregar.setText("Agregar");
+        btnagregar.setActionCommand("agregar");
+        tbldistribuidores.clearSelection();
+        limpiarDatos();
+    }
+
+    public void limpiarDatos() {
+        txtcodigo.setText("");
+        txtnombre.setText("");
+        txtcc.setText("");
+        txttelefono.setText("");
+        txtdireccion.setText("");
+    }
+
+    public void gestionMensajes(String mensaje, String titulo, int icono) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
+    }
+    
+    private void tbldistribuidoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbldistribuidoresMouseClicked
+        int sel = tbldistribuidores.getSelectedRow();
+        if(sel == -1){
+            if(tbldistribuidores.getRowCount()==0){
+                JOptionPane.showMessageDialog(this,"No hay registros");
+            }
+        }else {
+            txtcodigo.setText(tbldistribuidores.getValueAt(sel, 0).toString());
+            txtnombre.setText(tbldistribuidores.getValueAt(sel, 1).toString());
+            txtcc.setText(tbldistribuidores.getValueAt(sel, 2).toString());
+            txttelefono.setText(tbldistribuidores.getValueAt(sel, 3).toString());
+            txtdireccion.setText(tbldistribuidores.getValueAt(sel, 4).toString());
+            btnactualizar.setEnabled(true);
+            btneliminar.setEnabled(true);
+            btnagregar.setText("Cancelar");
+            btnagregar.setActionCommand("cancelar");
+        }
+    }//GEN-LAST:event_tbldistribuidoresMouseClicked
+    
+    
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnactualizar;
     private javax.swing.JButton btnagregar;
@@ -184,12 +328,14 @@ public class VentanaDistri extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblcc;
+    private javax.swing.JLabel lblcodigo;
     private javax.swing.JLabel lbldireccion;
     private javax.swing.JLabel lblnombre;
     private javax.swing.JLabel lbltelefono;
     private javax.swing.JPanel pnldistribuidor;
     private javax.swing.JTable tbldistribuidores;
     private javax.swing.JTextField txtcc;
+    private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txttelefono;

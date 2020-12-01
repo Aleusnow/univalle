@@ -160,8 +160,8 @@ public class VendedorDAO {
                 vendedor.setCodigoVen(rs.getInt("codigoven"));
                 vendedor.setNombreVen(rs.getString("nombreven"));
                 vendedor.setcCVen(rs.getString("ccven"));
-                vendedor.setcCVen(rs.getString("telefonoven"));
-                vendedor.setcCVen(rs.getString("direccionven"));
+                vendedor.setTelefonoVen(rs.getString("telefonoven"));
+                vendedor.setDireccionVen(rs.getString("direccionven"));
                 listado.add(vendedor);
             }
         }
