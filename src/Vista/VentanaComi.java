@@ -38,6 +38,7 @@ public class VentanaComi extends javax.swing.JInternalFrame {
         txtnombre = new javax.swing.JTextField();
         txtventasreali = new javax.swing.JTextField();
         txtcomision = new javax.swing.JTextField();
+        btnbuscar = new javax.swing.JButton();
         pnllistado = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblcomisiones = new javax.swing.JTable();
@@ -60,7 +61,6 @@ public class VentanaComi extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Comisión:  ");
 
-        cmbcodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbcodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbcodigoActionPerformed(evt);
@@ -68,6 +68,7 @@ public class VentanaComi extends javax.swing.JInternalFrame {
         });
 
         txtnombre.setEditable(false);
+        txtnombre.setEnabled(false);
         txtnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnombreActionPerformed(evt);
@@ -75,8 +76,12 @@ public class VentanaComi extends javax.swing.JInternalFrame {
         });
 
         txtventasreali.setEditable(false);
+        txtventasreali.setEnabled(false);
 
         txtcomision.setEditable(false);
+        txtcomision.setEnabled(false);
+
+        btnbuscar.setText("Buscar");
 
         javax.swing.GroupLayout pnlbuscarLayout = new javax.swing.GroupLayout(pnlbuscar);
         pnlbuscar.setLayout(pnlbuscarLayout);
@@ -96,7 +101,9 @@ public class VentanaComi extends javax.swing.JInternalFrame {
                     .addComponent(txtnombre)
                     .addComponent(txtventasreali)
                     .addComponent(txtcomision))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(btnbuscar)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         pnlbuscarLayout.setVerticalGroup(
             pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,14 +112,19 @@ public class VentanaComi extends javax.swing.JInternalFrame {
                 .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblcodigo)
                     .addComponent(cmbcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblnombre)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtventasreali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlbuscarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblnombre)
+                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtventasreali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlbuscarLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnbuscar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -124,10 +136,7 @@ public class VentanaComi extends javax.swing.JInternalFrame {
 
         tblcomisiones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Ventas realizadas", "Comision"
@@ -200,6 +209,7 @@ public class VentanaComi extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnbuscar;
     private javax.swing.JComboBox<String> cmbcodigo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

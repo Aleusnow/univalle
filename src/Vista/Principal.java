@@ -332,6 +332,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventaActionPerformed
         VentanaVenta vent = new VentanaVenta();
+        VentaDAO ventaDao = new VentaDAO();
+        VentaDetalleDAO ventDetDao = new VentaDetalleDAO();
         
         System.out.println("Le diste click a venta");
         
@@ -346,6 +348,8 @@ public class Principal extends javax.swing.JFrame {
             vent.setLocation(x,y);
             vent.setVisible(true);
         }
+        
+        CtrlVenta controlVen = new CtrlVenta(vent,ventaDao,ventDetDao);
     }//GEN-LAST:event_ventaActionPerformed
 
     /**
