@@ -171,6 +171,15 @@ public class VentanaVen extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tblvendedores);
+        if (tblvendedores.getColumnModel().getColumnCount() > 0) {
+            tblvendedores.getColumnModel().getColumn(0).setMaxWidth(80);
+            tblvendedores.getColumnModel().getColumn(2).setMinWidth(90);
+            tblvendedores.getColumnModel().getColumn(2).setMaxWidth(100);
+            tblvendedores.getColumnModel().getColumn(3).setMinWidth(90);
+            tblvendedores.getColumnModel().getColumn(3).setMaxWidth(100);
+            tblvendedores.getColumnModel().getColumn(4).setMinWidth(90);
+            tblvendedores.getColumnModel().getColumn(4).setMaxWidth(100);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

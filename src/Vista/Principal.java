@@ -314,6 +314,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void ingresomatpriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresomatpriActionPerformed
         VentanaIngMatPri ing = new VentanaIngMatPri();
+        IngresoDAO ingDao = new IngresoDAO();
+        IngresoDetalleDAO ingDetDao = new IngresoDetalleDAO();
         
         System.out.println("Le diste click a ingreso materia prima");
         
@@ -328,6 +330,9 @@ public class Principal extends javax.swing.JFrame {
             ing.setLocation(x,y);
             ing.setVisible(true);
         }
+        
+        CtrlIngreso controlIng = new CtrlIngreso(ing, ingDao,  ingDetDao);
+
     }//GEN-LAST:event_ingresomatpriActionPerformed
 
     private void ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventaActionPerformed

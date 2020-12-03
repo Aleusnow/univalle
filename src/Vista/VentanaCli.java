@@ -141,7 +141,6 @@ public class VentanaCli extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Clientes");
-        setPreferredSize(new java.awt.Dimension(541, 407));
 
         pnlcliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Datos Cliente")));
 
@@ -182,7 +181,7 @@ public class VentanaCli extends javax.swing.JInternalFrame {
                         .addGroup(pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlclienteLayout.createSequentialGroup()
                                 .addComponent(lblnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(226, 226, 226))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(pnlclienteLayout.createSequentialGroup()
                                 .addGroup(pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(lbltelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -193,12 +192,13 @@ public class VentanaCli extends javax.swing.JInternalFrame {
                                     .addComponent(txtcc, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
                         .addGroup(pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnactualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnagregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(24, 24, 24))))
         );
         pnlclienteLayout.setVerticalGroup(
             pnlclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +232,7 @@ public class VentanaCli extends javax.swing.JInternalFrame {
                         .addComponent(btnactualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btneliminar)
-                        .addGap(47, 47, 47))))
+                        .addGap(46, 46, 46))))
         );
 
         tblclientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -267,8 +267,11 @@ public class VentanaCli extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tblclientes);
         if (tblclientes.getColumnModel().getColumnCount() > 0) {
             tblclientes.getColumnModel().getColumn(0).setMaxWidth(80);
+            tblclientes.getColumnModel().getColumn(2).setMinWidth(90);
             tblclientes.getColumnModel().getColumn(2).setMaxWidth(130);
+            tblclientes.getColumnModel().getColumn(3).setMinWidth(90);
             tblclientes.getColumnModel().getColumn(3).setMaxWidth(170);
+            tblclientes.getColumnModel().getColumn(4).setMinWidth(90);
             tblclientes.getColumnModel().getColumn(4).setMaxWidth(180);
         }
 
@@ -277,13 +280,13 @@ public class VentanaCli extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addComponent(pnlcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -32,7 +32,6 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         pnlbuscar = new javax.swing.JPanel();
         lblcodigo = new javax.swing.JLabel();
         lblnombre = new javax.swing.JLabel();
-        cmbcodigo = new javax.swing.JComboBox<>();
         txtnombre = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lblmedoce = new javax.swing.JLabel();
@@ -43,6 +42,10 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         txtdoce = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtcantidad = new javax.swing.JTextField();
+        txtcodigo = new javax.swing.JTextField();
+        btnagregar = new javax.swing.JButton();
+        btnactualizar = new javax.swing.JButton();
+        btneliminar = new javax.swing.JButton();
         pnllistado = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblproductos = new javax.swing.JTable();
@@ -53,20 +56,12 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Productos");
-        setPreferredSize(new java.awt.Dimension(563, 503));
 
         pnlbuscar.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar"));
 
         lblcodigo.setText("Codigo: ");
 
         lblnombre.setText("Nombre:");
-
-        cmbcodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbcodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbcodigoActionPerformed(evt);
-            }
-        });
 
         txtnombre.setEditable(false);
         txtnombre.addActionListener(new java.awt.event.ActionListener() {
@@ -99,22 +94,21 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbluni)
                     .addComponent(lblmedoce)
                     .addComponent(jLabel1))
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtmedoce, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                    .addComponent(txtuni, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                    .addComponent(txtdoce))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtmedoce, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtuni, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtdoce, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbluni)
                     .addComponent(txtuni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -126,7 +120,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtdoce, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         jLabel2.setText("Cantidad:");
@@ -138,12 +132,22 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        txtcodigo.setEditable(false);
+
+        btnagregar.setText("Agregar");
+
+        btnactualizar.setText("Actualizar");
+        btnactualizar.setEnabled(false);
+
+        btneliminar.setText("Eliminar");
+        btneliminar.setEnabled(false);
+
         javax.swing.GroupLayout pnlbuscarLayout = new javax.swing.GroupLayout(pnlbuscar);
         pnlbuscar.setLayout(pnlbuscarLayout);
         pnlbuscarLayout.setHorizontalGroup(
             pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlbuscarLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(32, 32, 32)
                 .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -151,52 +155,62 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
                         .addComponent(lblcodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlbuscarLayout.createSequentialGroup()
-                        .addComponent(cmbcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 3, Short.MAX_VALUE))
                     .addComponent(txtnombre)
-                    .addComponent(txtcantidad))
-                .addGap(41, 41, 41)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtcantidad)
+                    .addComponent(txtcodigo))
+                .addGap(40, 40, 40)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(pnlbuscarLayout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(btnagregar)
+                .addGap(27, 27, 27)
+                .addComponent(btnactualizar)
+                .addGap(27, 27, 27)
+                .addComponent(btneliminar)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         pnlbuscarLayout.setVerticalGroup(
             pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlbuscarLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlbuscarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblcodigo)
+                            .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblnombre)
+                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblcodigo)
-                    .addComponent(cmbcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblnombre)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlbuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnagregar)
+                    .addComponent(btnactualizar)
+                    .addComponent(btneliminar))
+                .addGap(22, 22, 22))
         );
 
         pnllistado.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado"));
 
         tblproductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Nombre", "Cantidad", "P. Unitario", "P. Media Docena", "P. Docena"
+                "Codigo", "Nombre", "Cantidad", "P. Unitario", "P. Media Docena", "P. Docena"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                true, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -209,26 +223,29 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblproductos);
         if (tblproductos.getColumnModel().getColumnCount() > 0) {
-            tblproductos.getColumnModel().getColumn(1).setMaxWidth(115);
-            tblproductos.getColumnModel().getColumn(2).setMaxWidth(150);
-            tblproductos.getColumnModel().getColumn(3).setMaxWidth(150);
-            tblproductos.getColumnModel().getColumn(4).setMaxWidth(150);
+            tblproductos.getColumnModel().getColumn(0).setMaxWidth(100);
+            tblproductos.getColumnModel().getColumn(1).setMinWidth(80);
+            tblproductos.getColumnModel().getColumn(1).setMaxWidth(170);
+            tblproductos.getColumnModel().getColumn(2).setMaxWidth(100);
+            tblproductos.getColumnModel().getColumn(3).setMaxWidth(100);
+            tblproductos.getColumnModel().getColumn(4).setMaxWidth(120);
+            tblproductos.getColumnModel().getColumn(5).setMaxWidth(100);
         }
 
         javax.swing.GroupLayout pnllistadoLayout = new javax.swing.GroupLayout(pnllistado);
         pnllistado.setLayout(pnllistadoLayout);
         pnllistadoLayout.setHorizontalGroup(
             pnllistadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnllistadoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(296, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnllistadoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnllistadoLayout.setVerticalGroup(
             pnllistadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnllistadoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnllistadoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -239,25 +256,22 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnllistado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnllistado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnllistado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnllistado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmbcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbcodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbcodigoActionPerformed
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
         // TODO add your handling code here:
@@ -273,7 +287,9 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmbcodigo;
+    private javax.swing.JButton btnactualizar;
+    private javax.swing.JButton btnagregar;
+    private javax.swing.JButton btneliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -288,6 +304,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnllistado;
     private javax.swing.JTable tblproductos;
     private javax.swing.JTextField txtcantidad;
+    private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtdoce;
     private javax.swing.JTextField txtmedoce;
     private javax.swing.JTextField txtnombre;

@@ -36,6 +36,7 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
         mVen = (DefaultComboBoxModel) cmbven.getModel();
         mProducto = (DefaultComboBoxModel) cmbproducto.getModel();
         cmbproducto.setActionCommand("cmbprod");
+        btnterminar.setActionCommand("terminar");
         System.out.println(cmbproducto.getActionCommand());
     }
 
@@ -68,7 +69,7 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
     }
 
     public String getNombre() {
-        return txttotal.getText().trim();
+        return txtnombre.getText().trim();
     }
 
     public int getPrecio() {
@@ -86,20 +87,25 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
     public void addListenerAgregar(ActionListener listen) {
         btnagregar.addActionListener(listen);
     }
-    
+
     public void addListenerSelectPro(ActionListener listen) {
         cmbproducto.addActionListener(listen);
     }
 
-    /*public void addListenerActualizar(ActionListener listen) {
-        btnactualizar.addActionListener(listen);
-    }*/
-
+    public void addListenerTerminar(ActionListener listen) {
+        btnterminar.addActionListener(listen);
+    }
+    
     public void addListenerEliminar(ActionListener listen) {
         btneliminar.addActionListener(listen);
     }
     
-    
+    public boolean revisartabla(){
+        if (tbldetventa.getRowCount() == 0) {
+                return false;
+            }
+        return true;
+    }
 
     //Vaciar la tabla 
     public void limpiarTabla() {
@@ -107,20 +113,21 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
             mTabla.removeRow(i);
 
         }
+        txttotal.setText("0");
     }
 
     //"Crear" tabla de Venta detalle
     public void cargarVentDet() {
-        
+
         int cantidad = Integer.parseInt(txtcantidad.getText());
         double precio = (Double) cmbprecio.getSelectedItem();
         double total = cantidad * precio;
         String nombre = txtnombre.getText();
         int codigo = Integer.parseInt(txtcodigo.getText());
-        double totaldefenitivo = Double.parseDouble(txttotal.getText())+ total;
-        
+        double totaldefenitivo = Double.parseDouble(txttotal.getText()) + total;
+
         txttotal.setText(String.valueOf(totaldefenitivo));
-        
+
         mTabla.addRow(new Object[]{
             codigo,
             nombre,
@@ -150,8 +157,8 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
             mVen.addElement(listaVen.get(i).getNombreVen());
         }
     }
-    
-    public void cargarDatosPro(Producto pro){
+
+    public void cargarDatosPro(Producto pro) {
         txtnombre.setText(pro.getNombrePro());
         txtcodigo.setText(String.valueOf(pro.getCodigoPro()));
         DefaultComboBoxModel cmb = new DefaultComboBoxModel();
@@ -159,17 +166,34 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
         cmb.addElement(pro.getPrecioMeDoce());
         cmb.addElement(pro.getPrecioDoce());
         cmbprecio.setModel(cmb);
-        
+
     }
-    
+
     public boolean revisaDatos() {
-        if (txtcantidad.getText().replaceAll(" ", "").isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Datos incompletos, por favor ingrese una cantidad");
+        if (txtcantidad.getText().replaceAll(" ", "").isEmpty() || 
+                txtnombre.getText().replaceAll(" ", "").isEmpty()
+                || txtcodigo.getText().replaceAll(" ", "").isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Datos incompletos, por favor seleccione un "
+                    + "producto e ingrese una cantidad");
             return false;
         }
         return true;
     }
 
+    public ArrayList<VentaDetalle> ventadetalle() {
+        ArrayList<VentaDetalle> ventdet = new ArrayList();
+        for (int i = 0; i < tbldetventa.getRowCount(); i++) {
+            VentaDetalle detallito = new VentaDetalle();
+            detallito.setProducto(Integer.parseInt(tbldetventa.getValueAt(i, 0).toString()));
+            detallito.setPrecio(Double.parseDouble(tbldetventa.getValueAt(i, 2).toString()));
+            detallito.setCantidad(Integer.parseInt(tbldetventa.getValueAt(i, 3).toString()));
+            detallito.setTotal(Double.parseDouble(tbldetventa.getValueAt(i, 4).toString()));
+            
+            ventdet.add(detallito);
+        }
+        return ventdet;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -198,6 +222,7 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
         lblprecio = new javax.swing.JLabel();
         cmbprecio = new javax.swing.JComboBox<>();
         btneliminar = new javax.swing.JButton();
+        btnterminar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Venta");
@@ -307,6 +332,8 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
             }
         });
 
+        btnterminar.setText("Terminar Venta");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -314,25 +341,27 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnagregar)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblcantidad)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane2))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblproducto)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(lblprecio)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(cmbproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGap(13, 13, 13)
+                                    .addComponent(cmbprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblcantidad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblproducto)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(lblprecio)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cmbproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addComponent(cmbprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
@@ -340,16 +369,16 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(49, 49, 49)
                                 .addComponent(lblcodigo)))
-                        .addGap(42, 42, 42)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtnombre)
-                            .addComponent(txtcodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtcodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(txtnombre)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnagregar)
-                        .addGap(31, 31, 31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btneliminar)
-                        .addGap(153, 153, 153))))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnterminar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,7 +402,8 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnagregar)
-                    .addComponent(btneliminar))
+                    .addComponent(btneliminar)
+                    .addComponent(btnterminar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -386,7 +416,7 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pnlventa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -407,16 +437,15 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
 
     private void tbldetventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbldetventaMouseClicked
         int sel = tbldetventa.getSelectedRow();
-        if(sel == -1){
-            if(tbldetventa.getRowCount()==0){
-                JOptionPane.showMessageDialog(this,"No hay registros");
+        if (sel == -1) {
+            if (tbldetventa.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "No hay registros");
             }
-        }else {
+        } else {
             txtcodigo.setText(tbldetventa.getValueAt(sel, 0).toString());
             txtnombre.setText(tbldetventa.getValueAt(sel, 1).toString());
             cmbprecio.setSelectedItem(tbldetventa.getValueAt(sel, 2).toString());
             txtcantidad.setText(tbldetventa.getValueAt(sel, 3).toString());
-            //btnactualizar.setEnabled(true);
             btneliminar.setEnabled(true);
             btnagregar.setText("Cancelar");
             btnagregar.setActionCommand("cancelar");
@@ -426,14 +455,14 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         int sel = tbldetventa.getSelectedRow();
         double can = Double.valueOf(tbldetventa.getValueAt(sel, 4).toString());
-        double totaldefenitivo = Double.parseDouble(txttotal.getText())- can;
-       
+        double totaldefenitivo = Double.parseDouble(txttotal.getText()) - can;
+
         txttotal.setText(String.valueOf(totaldefenitivo));
         mTabla.removeRow(sel);
         cancelarAction();
-        
+
     }//GEN-LAST:event_btneliminarActionPerformed
-public void cancelarAction() {
+    public void cancelarAction() {
         btneliminar.setEnabled(false);
         //btnactualizar.setEnabled(false);
         btnagregar.setText("Agregar");
@@ -453,6 +482,7 @@ public void cancelarAction() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnagregar;
     private javax.swing.JButton btneliminar;
+    private javax.swing.JButton btnterminar;
     private javax.swing.JComboBox<String> cmbcli;
     private javax.swing.JComboBox<String> cmbprecio;
     private javax.swing.JComboBox<String> cmbproducto;
