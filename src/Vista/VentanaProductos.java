@@ -5,17 +5,26 @@
  */
 package Vista;
 
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Producto;
+
 /**
  *
  * @author Amelia Wolf
  */
 public class VentanaProductos extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel mTabla;
+    
     /**
      * Creates new form VentanaComi
      */
     public VentanaProductos() {
         initComponents();
+        mTabla = (DefaultTableModel) tblproductos.getModel();
     }
 
     /**
@@ -57,18 +66,11 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Productos");
 
-        pnlbuscar.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar"));
+        pnlbuscar.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Producto"));
 
         lblcodigo.setText("Codigo: ");
 
         lblnombre.setText("Nombre:");
-
-        txtnombre.setEditable(false);
-        txtnombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Precios"));
 
@@ -76,18 +78,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
 
         lbluni.setText("Unitario:");
 
-        txtuni.setEditable(false);
-        txtuni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtuniActionPerformed(evt);
-            }
-        });
-
-        txtmedoce.setEditable(false);
-
         jLabel1.setText("Docena:");
-
-        txtdoce.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,13 +115,6 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         );
 
         jLabel2.setText("Cantidad:");
-
-        txtcantidad.setEditable(false);
-        txtcantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcantidadActionPerformed(evt);
-            }
-        });
 
         txtcodigo.setEditable(false);
 
@@ -221,6 +205,11 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblproductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblproductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblproductos);
         if (tblproductos.getColumnModel().getColumnCount() > 0) {
             tblproductos.getColumnModel().getColumn(0).setMaxWidth(100);
@@ -273,18 +262,118 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreActionPerformed
+    private void tblproductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblproductosMouseClicked
+        int sel = tblproductos.getSelectedRow();
+        if(sel == -1){
+            if(tblproductos.getRowCount()==0){
+                JOptionPane.showMessageDialog(this,"No hay registros");
+            }
+        }else {
+            txtcodigo.setText(tblproductos.getValueAt(sel, 0).toString());
+            txtnombre.setText(tblproductos.getValueAt(sel, 1).toString());
+            txtcantidad.setText(tblproductos.getValueAt(sel, 2).toString());
+            txtuni.setText(tblproductos.getValueAt(sel, 3).toString());
+            txtmedoce.setText(tblproductos.getValueAt(sel, 4).toString());
+            txtdoce.setText(tblproductos.getValueAt(sel, 5).toString());
+            btnactualizar.setEnabled(true);
+            btneliminar.setEnabled(true);
+            btnagregar.setText("Cancelar");
+            btnagregar.setActionCommand("cancelar");
+        }
+    }//GEN-LAST:event_tblproductosMouseClicked
+    
+    //Haciendo Listeners de los txt y btn
+    public int getCodigo() {
+        return Integer.parseInt(txtcodigo.getText().trim());
+    }
 
-    private void txtuniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtuniActionPerformed
+    public String getNombre() {
+        return txtnombre.getText().trim();
+    }
 
-    private void txtcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcantidadActionPerformed
+    public int getCantidad() {
+        return Integer.parseInt(txtcantidad.getText().trim());
+    }
 
+    public double getUnitario() {
+        return Double.parseDouble(txtuni.getText().trim());
+    }
+
+    public double getMediaDocena() {
+        return Double.parseDouble(txtmedoce.getText().trim());
+    }
+    
+    public double getDocena() {
+        return Double.parseDouble(txtdoce.getText().trim());
+    }
+
+    public void addListenerAgregar(ActionListener listen) {
+        btnagregar.addActionListener(listen);
+    }
+
+    public void addListenerBtnActualizar(ActionListener listen) {
+        btnactualizar.addActionListener(listen);
+    }
+
+    public void addListenerEliminar(ActionListener listen) {
+        btneliminar.addActionListener(listen);
+    }
+    
+    //Vaciar la tabla 
+    public void limpiarTabla() {
+        for (int i = mTabla.getRowCount() - 1; i >= 0; i--) {
+            mTabla.removeRow(i);
+
+        }
+    }
+
+    //"Crear" tabla de productos
+    public void cargarProductos(ArrayList<Producto> listaPro) {
+        limpiarTabla();
+        for (int i = 0; i < listaPro.size(); i++) {
+            mTabla.addRow(new Object[]{
+                listaPro.get(i).getCodigoPro(),
+                listaPro.get(i).getNombrePro(),
+                listaPro.get(i).getInventarioPro(),
+                listaPro.get(i).getPrecioUni(),
+                listaPro.get(i).getPrecioMeDoce(),
+                listaPro.get(i).getPrecioDoce(),});
+        }
+    }
+    
+    public boolean revisaDatos() {
+        if (txtnombre.getText().replaceAll(" ", "").isEmpty() || txtcantidad.getText().replaceAll(" ", "").isEmpty()
+                || txtuni.getText().replaceAll(" ", "").isEmpty() || txtmedoce.getText().replaceAll(" ", "").isEmpty()
+                || txtdoce.getText().replaceAll(" ", "").isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Datos incompletos, por favor llene todos lo campos");
+            return false;
+        }
+        return true;
+    }
+    
+    public void cancelarAction() {
+        btneliminar.setEnabled(false);
+        btnactualizar.setEnabled(false);
+        btnagregar.setText("Agregar");
+        btnagregar.setActionCommand("agregar");
+        tblproductos.clearSelection();
+        limpiarDatos();
+    }
+
+    public void limpiarDatos() {
+        txtcodigo.setText("");
+        txtnombre.setText("");
+        txtcantidad.setText("");
+        txtuni.setText("");
+        txtmedoce.setText("");
+        txtdoce.setText("");
+    }
+
+    public void gestionMensajes(String mensaje, String titulo, int icono) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnactualizar;

@@ -65,7 +65,7 @@ public class MateriaPrimaDAO {
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "UPDATE materiaprima" +
+            String sql = "UPDATE materiaprima " +
                          "SET nombrematpri = ?, inventariomatpri = ?"
                     +    "WHERE codigomatpri = ?";
             pstm = con.prepareStatement(sql);            

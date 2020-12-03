@@ -260,6 +260,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosActionPerformed
         VentanaProductos pro = new VentanaProductos();
+        ProductoDAO proDao = new ProductoDAO();
         
         System.out.println("Le diste click a producto");
         
@@ -274,10 +275,13 @@ public class Principal extends javax.swing.JFrame {
             pro.setLocation(x,y);
             pro.setVisible(true);
         }
+        
+        CtrlProducto controlPro = new CtrlProducto(pro,proDao);
     }//GEN-LAST:event_productosActionPerformed
 
     private void materiaprimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materiaprimaActionPerformed
         VentanaMatPri matpri = new VentanaMatPri();
+        MateriaPrimaDAO matpriDao = new MateriaPrimaDAO();
         
         System.out.println("Le diste click a materia prima");
         
@@ -292,6 +296,7 @@ public class Principal extends javax.swing.JFrame {
             matpri.setLocation(x,y);
             matpri.setVisible(true);
         }
+        CtrlMatPrima controlMatPri = new CtrlMatPrima(matpri,matpriDao);
     }//GEN-LAST:event_materiaprimaActionPerformed
 
     private void produccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produccionActionPerformed

@@ -161,6 +161,7 @@ public class ProductoDAO {
                 producto = new Producto();
                 producto.setCodigoPro(rs.getInt("codigopro"));
                 producto.setNombrePro(rs.getString("nombrepro"));
+                producto.setInventarioPro(rs.getInt("inventariopro"));
                 producto.setPrecioUni(rs.getDouble("preciouni"));
                 producto.setPrecioMeDoce(rs.getDouble("preciomedoce"));
                 producto.setPrecioDoce(rs.getDouble("preciodoce"));          
