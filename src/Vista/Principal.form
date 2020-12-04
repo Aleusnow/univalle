@@ -109,12 +109,12 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="listadomatpri">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listado Materias Primas"/>
+                <Property name="text" type="java.lang.String" value="Listado Ingreso Materias Primas"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="listadopro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listado Productos"/>
+                <Property name="text" type="java.lang.String" value="Listado Produccion"/>
               </Properties>
             </MenuItem>
           </SubComponents>

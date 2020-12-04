@@ -152,10 +152,10 @@ public class Principal extends javax.swing.JFrame {
         listadoven.setText("Listado Ventas realizadas");
         interno.add(listadoven);
 
-        listadomatpri.setText("Listado Materias Primas");
+        listadomatpri.setText("Listado Ingreso Materias Primas");
         interno.add(listadomatpri);
 
-        listadopro.setText("Listado Productos");
+        listadopro.setText("Listado Produccion");
         interno.add(listadopro);
 
         jMenuBar1.add(interno);
