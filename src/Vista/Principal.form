@@ -106,11 +106,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listado Ventas realizadas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listadovenActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="listadomatpri">
+            <MenuItem class="javax.swing.JMenuItem" name="listadoingrea">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listado Ingreso Materias Primas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listadoingreaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="listadopro">
               <Properties>

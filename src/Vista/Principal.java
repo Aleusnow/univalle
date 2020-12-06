@@ -46,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
         venta = new javax.swing.JMenuItem();
         interno = new javax.swing.JMenu();
         listadoven = new javax.swing.JMenuItem();
-        listadomatpri = new javax.swing.JMenuItem();
+        listadoingrea = new javax.swing.JMenuItem();
         listadopro = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,10 +150,20 @@ public class Principal extends javax.swing.JFrame {
         interno.setText("Interno");
 
         listadoven.setText("Listado Ventas realizadas");
+        listadoven.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listadovenActionPerformed(evt);
+            }
+        });
         interno.add(listadoven);
 
-        listadomatpri.setText("Listado Ingreso Materias Primas");
-        interno.add(listadomatpri);
+        listadoingrea.setText("Listado Ingreso Materias Primas");
+        listadoingrea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listadoingreaActionPerformed(evt);
+            }
+        });
+        interno.add(listadoingrea);
 
         listadopro.setText("Listado Produccion");
         interno.add(listadopro);
@@ -365,6 +375,56 @@ public class Principal extends javax.swing.JFrame {
         CtrlVenta controlVen = new CtrlVenta(vent,ventaDao,ventDetDao);
     }//GEN-LAST:event_ventaActionPerformed
 
+    private void listadovenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listadovenActionPerformed
+        VentanaVentRea ventrea = new VentanaVentRea();
+        VentaDAO ventaDao = new VentaDAO();
+        VentaDetalleDAO ventDetDao = new VentaDetalleDAO();
+        VistaDetalleVenta vistadet = new VistaDetalleVenta();
+        
+        System.out.println("Le diste click a venta");
+        
+        int x = (escritorio.getWidth() / 2) - ventrea.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - ventrea.getHeight() /2;
+
+        if (ventrea.isShowing()){
+            ventrea.setLocation(x,y);
+        }
+        else{
+            escritorio.add(ventrea);
+            escritorio.add(vistadet);
+            ventrea.setLocation(x,y);
+            vistadet.setLocation(x,y);
+            ventrea.setVisible(true);
+        }
+        
+        CtrlVentRea controlVentRea = new CtrlVentRea(ventrea,ventaDao,ventDetDao,vistadet);
+    }//GEN-LAST:event_listadovenActionPerformed
+
+    private void listadoingreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listadoingreaActionPerformed
+        VentanaIngRea ingrea = new VentanaIngRea();
+        IngresoDAO ingresoDao = new IngresoDAO();
+        IngresoDetalleDAO ingDetDao = new IngresoDetalleDAO();
+        VistaDetIng vistadet = new VistaDetIng();
+        
+        System.out.println("Le diste click a venta");
+        
+        int x = (escritorio.getWidth() / 2) - ingrea.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - ingrea.getHeight() /2;
+
+        if (ingrea.isShowing()){
+            ingrea.setLocation(x,y);
+        }
+        else{
+            escritorio.add(ingrea);
+            escritorio.add(vistadet);
+            ingrea.setLocation(x,y);
+            vistadet.setLocation(x,y);
+            ingrea.setVisible(true);
+        }
+        
+        CtrlIngRea controlIngRea = new CtrlIngRea(ingrea,ingresoDao,ingDetDao,vistadet);
+    }//GEN-LAST:event_listadoingreaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -410,7 +470,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu interno;
     private javax.swing.JMenu inventario;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem listadomatpri;
+    private javax.swing.JMenuItem listadoingrea;
     private javax.swing.JMenuItem listadopro;
     private javax.swing.JMenuItem listadoven;
     private javax.swing.JMenuItem materiaprima;

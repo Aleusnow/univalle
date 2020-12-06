@@ -134,7 +134,7 @@ public class VentaDetalleDAO {
      * @param codigoventadet codigo del VentaDetalle a listar, 0 se listaran todos
      * @return ArrayList, lista de objetos Programa
      */
-    public ArrayList<VentaDetalle> listadoClientes(int codigoventadet){      
+    public ArrayList<VentaDetalle> listadoVentaDetalles(int codigoventadet){      
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -145,7 +145,7 @@ public class VentaDetalleDAO {
             if(codigoventadet == 0){
                 sql = "SELECT * FROM ventadetalle ORDER BY codigoventadet";            
             }else{
-                sql = "SELECT * FROM ventadetalle where codigoventadet = ? ";
+                sql = "SELECT * FROM ventadetalle where venta = ? ";
                     //+ "ORDER BY codigocli";      
             }                        
             pstm = con.prepareStatement(sql);
