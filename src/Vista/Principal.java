@@ -301,6 +301,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void produccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produccionActionPerformed
         VentanaProduccion produ = new VentanaProduccion();
+        ProduccionDAO produDao = new ProduccionDAO();
+        ProducidosDAO prDao = new ProducidosDAO();
         
         System.out.println("Le diste click a produccion");
         
@@ -315,6 +317,7 @@ public class Principal extends javax.swing.JFrame {
             produ.setLocation(x,y);
             produ.setVisible(true);
         }
+        CtrlProduccion controlProdu = new CtrlProduccion(produ,produDao,prDao);
     }//GEN-LAST:event_produccionActionPerformed
 
     private void ingresomatpriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresomatpriActionPerformed

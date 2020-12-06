@@ -67,16 +67,12 @@
                               <Group type="102" attributes="0">
                                   <Component id="lblnombre" min="-2" pref="69" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cmbproducto" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <Component id="cmbproducto1" min="-2" pref="157" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblcuantos1" min="-2" pref="69" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="312" max="-2" attributes="0"/>
-                                  <Component id="btncrear1" min="-2" pref="107" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lblcuantos1" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="267" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -89,16 +85,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblnombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbproducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbproducto1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="pnlproducir" min="-2" pref="251" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblcuantos1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btncrear1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="336" max="-2" attributes="0"/>
+                  <Component id="lblcuantos1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -109,11 +102,6 @@
         <Component class="javax.swing.JLabel" name="lblnombre">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btncrear1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Crear"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblcuantos1">
@@ -185,6 +173,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtcantidad">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcantidadActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
@@ -232,7 +223,7 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel2">
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbproducto">
+        <Component class="javax.swing.JComboBox" name="cmbproducto1">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -272,7 +263,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="cmbmatpri" pref="213" max="32767" attributes="0"/>
-                                      <Component id="cmbcodigo" max="32767" attributes="0"/>
+                                      <Component id="cmbproducto2" max="32767" attributes="0"/>
                                       <Component id="txtcuantos" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -299,7 +290,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblproducto" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbcodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbproducto2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -332,7 +323,7 @@
             <Property name="text" type="java.lang.String" value="Producto: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbcodigo">
+        <Component class="javax.swing.JComboBox" name="cmbproducto2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -348,9 +339,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtcuantos">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btneliminar">
           <Properties>
@@ -373,7 +361,6 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -392,7 +379,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tblnecesario">
+            <Component class="javax.swing.JTable" name="tblreceta">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="0">
@@ -430,6 +417,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblrecetaMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

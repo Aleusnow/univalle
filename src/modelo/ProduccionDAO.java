@@ -67,13 +67,13 @@ public class ProduccionDAO {
         try{
             con = Fachada.getConnection();
             String sql = "UPDATE produccion " +
-                         "SET  materiaprima = ?, cantidadmatprima = ?"
+                         "SET  producto = ?, materiaprima = ?, cantidadmatprima = ?"
                     +    "WHERE codigoprodu = ?";
             pstm = con.prepareStatement(sql);            
             pstm.setInt(1, pr.getProducto());
             pstm.setInt(2, pr.getMateriaPrima());
             pstm.setInt(3, pr.getCantidadMatPrima());
-            pstm.setInt(5, pr.getCodigoProdu());
+            pstm.setInt(4, pr.getCodigoProdu());
             rtdo = pstm.executeUpdate();  
         }
         catch(SQLException ex){
