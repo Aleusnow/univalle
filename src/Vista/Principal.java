@@ -47,7 +47,7 @@ public class Principal extends javax.swing.JFrame {
         interno = new javax.swing.JMenu();
         listadoven = new javax.swing.JMenuItem();
         listadoingrea = new javax.swing.JMenuItem();
-        listadopro = new javax.swing.JMenuItem();
+        listadoprodu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1600, 1000));
@@ -165,8 +165,13 @@ public class Principal extends javax.swing.JFrame {
         });
         interno.add(listadoingrea);
 
-        listadopro.setText("Listado Produccion");
-        interno.add(listadopro);
+        listadoprodu.setText("Listado Produccion");
+        listadoprodu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listadoproduActionPerformed(evt);
+            }
+        });
+        interno.add(listadoprodu);
 
         jMenuBar1.add(interno);
 
@@ -425,6 +430,26 @@ public class Principal extends javax.swing.JFrame {
         CtrlIngRea controlIngRea = new CtrlIngRea(ingrea,ingresoDao,ingDetDao,vistadet);
     }//GEN-LAST:event_listadoingreaActionPerformed
 
+    private void listadoproduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listadoproduActionPerformed
+        VentanaProduRea produ = new VentanaProduRea();
+        ProduccionDAO produDao = new ProduccionDAO();
+        
+        System.out.println("Le diste click a materia prima");
+        
+        int x = (escritorio.getWidth() / 2) - produ.getWidth() /2;
+        int y = (escritorio.getHeight() / 2) - produ.getHeight() /2;
+
+        if (produ.isShowing()){
+            produ.setLocation(x,y);
+        }
+        else{
+            escritorio.add(produ);
+            produ.setLocation(x,y);
+            produ.setVisible(true);
+        }
+        CtrlProduRea controlProduRea = new CtrlProduRea(produ,produDao);
+    }//GEN-LAST:event_listadoproduActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -471,7 +496,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu inventario;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem listadoingrea;
-    private javax.swing.JMenuItem listadopro;
+    private javax.swing.JMenuItem listadoprodu;
     private javax.swing.JMenuItem listadoven;
     private javax.swing.JMenuItem materiaprima;
     private javax.swing.JMenu procesos;

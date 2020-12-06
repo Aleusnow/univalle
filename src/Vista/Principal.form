@@ -118,10 +118,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listadoingreaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="listadopro">
+            <MenuItem class="javax.swing.JMenuItem" name="listadoprodu">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listado Produccion"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listadoproduActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

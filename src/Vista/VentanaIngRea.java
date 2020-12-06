@@ -89,6 +89,7 @@ public class VentanaIngRea extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tblingrea);
 
         btnver.setText("Ver Detalle");
+        btnver.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
