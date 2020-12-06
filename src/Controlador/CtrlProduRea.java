@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import modelo.MateriaPrima;
 import modelo.MateriaPrimaDAO;
 import modelo.ProduccionDAO;
+import modelo.ProducidosDAO;
 import modelo.Producto;
 import modelo.ProductoDAO;
 
@@ -19,26 +20,22 @@ import modelo.ProductoDAO;
  */
 public class CtrlProduRea {
     private VentanaProduRea vistaProduRea;
-    private ProduccionDAO modeloProduccion;
+    private ProducidosDAO modeloProducidos;
 
 
     private ArrayList<Producto> listaprodu;
-    private ArrayList<MateriaPrima> listamatpri;
 
-    public CtrlProduRea(VentanaProduRea vistaProduRea, ProduccionDAO modeloProduccion) {
+    public CtrlProduRea(VentanaProduRea vistaProduRea, ProducidosDAO modeloProducidos) {
         this.vistaProduRea = vistaProduRea;
-        this.modeloProduccion = modeloProduccion;
+        this.modeloProducidos = modeloProducidos;
 
         //this.vistaProduRea.addListenerVer(new Listen());
 
-        ProductoDAO mPro = new ProductoDAO();
-        MateriaPrimaDAO mMatPri = new MateriaPrimaDAO();
-        
+        ProductoDAO mPro = new ProductoDAO();        
 
         this.listaprodu = mPro.listadoProductos(0);
-        this.listamatpri = mMatPri.listadoMateriasPrimas(0);
         
-        this.vistaProduRea.cargarProduccionesRealizadas(modeloProduccion.listadoProducciones(0), listaprodu, listamatpri);
+        this.vistaProduRea.cargarProduccionesRealizadas(modeloProducidos.listadoProducidos(0), listaprodu);
     }
     
 }

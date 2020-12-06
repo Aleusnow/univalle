@@ -120,7 +120,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="listadoprodu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listado Produccion"/>
+                <Property name="text" type="java.lang.String" value="Listado Producidos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listadoproduActionPerformed"/>

@@ -165,7 +165,7 @@ public class Principal extends javax.swing.JFrame {
         });
         interno.add(listadoingrea);
 
-        listadoprodu.setText("Listado Produccion");
+        listadoprodu.setText("Listado Producidos");
         listadoprodu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listadoproduActionPerformed(evt);
@@ -432,7 +432,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void listadoproduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listadoproduActionPerformed
         VentanaProduRea produ = new VentanaProduRea();
-        ProduccionDAO produDao = new ProduccionDAO();
+        ProducidosDAO produDao = new ProducidosDAO();
         
         System.out.println("Le diste click a materia prima");
         

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.MateriaPrima;
 import modelo.Produccion;
+import modelo.Producidos;
 import modelo.Producto;
 
 
@@ -42,7 +43,7 @@ public class VentanaProduRea extends javax.swing.JInternalFrame {
     }
     
     //"Crear" tabla de producciones realizadas
-    public void cargarProduccionesRealizadas(ArrayList<Produccion> listaProdu, ArrayList <Producto> pro, ArrayList <MateriaPrima> matpri) {
+    public void cargarProduccionesRealizadas(ArrayList<Producidos> listaProdu, ArrayList <Producto> pro) {
         for (int i = 0; i < listaProdu.size(); i++) {
             
             int codProducto = listaProdu.get(i).getProducto();
@@ -53,19 +54,11 @@ public class VentanaProduRea extends javax.swing.JInternalFrame {
                 }
             }
             
-            int codMatPri = listaProdu.get(i).getMateriaPrima();
-            String nomMatPri = "";
-            for (int j = 0; j < matpri.size(); j++) {
-                if(matpri.get(j).getCodigoMatPri()== codMatPri){
-                    nomMatPri = matpri.get(j).getNombreMatPri();
-                }
-            }
             
             mTabla.addRow(new Object[]{
-                listaProdu.get(i).getCodigoProdu(),
+                listaProdu.get(i).getIdProducidos(),
                 nomPro,
-                nomMatPri,
-                listaProdu.get(i).getCantidadMatPrima(),});
+                listaProdu.get(i).getCantidadProducida(),});
         }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -75,14 +68,14 @@ public class VentanaProduRea extends javax.swing.JInternalFrame {
         tblprodurea = new javax.swing.JTable();
 
         setClosable(true);
-        setTitle("Producciones realizadas");
+        setTitle("Producidos realizadas");
 
         tblprodurea.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo Produccion", "Producto", "Materia Prima", "Cantidad Mat Pri"
+                "Codigo Producido", "Producto", "Cantidad "
             }
         ));
         jScrollPane1.setViewportView(tblprodurea);
