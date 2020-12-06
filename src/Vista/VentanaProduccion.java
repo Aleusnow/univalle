@@ -39,6 +39,7 @@ public class VentanaProduccion extends javax.swing.JInternalFrame {
         cmbproducto2.setActionCommand("cmbproducto2");
         mMatPri = (DefaultComboBoxModel) cmbmatpri.getModel();
         cmbmatpri.setActionCommand("cmbmatpri");
+        System.out.println(btnproducir.getActionCommand());
 
     }
 
@@ -63,12 +64,25 @@ public class VentanaProduccion extends javax.swing.JInternalFrame {
     }
 
     public int getCantidad() {
-        return Integer.getInteger(txtcantidad.getText().trim());
+        return Integer.parseInt(txtcantidad.getText().trim());
     }
 
     public int getCuantos() {
         return Integer.parseInt(txtcuantos.getText().trim());
     }
+    
+    public int getTablaReceta(){
+        int sel = tblreceta.getSelectedRow();
+        int recetita = (Integer) tblreceta.getValueAt(sel, 0);   
+        return recetita;
+    }
+    
+    public int getCodMatPriReceta(){
+        int sel = tblreceta.getSelectedRow();
+        int recetita = (Integer) tblreceta.getValueAt(sel, 1);   
+        return recetita;
+    }
+    
 
     public void addListenerSelectProdu1(ActionListener listen) {
         cmbproducto1.addActionListener(listen);
@@ -207,6 +221,18 @@ public class VentanaProduccion extends javax.swing.JInternalFrame {
     public void gestionMensajes(String mensaje, String titulo, int icono) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
+    
+    public void calcular (){
+        int cant = 0;
+        if (!txtcantidad.getText().replaceAll(" ", "").isEmpty()) {
+            cant = Integer.parseUnsignedInt(txtcantidad.getText().trim());
+        }
+        for (int i = 0; i < mProdu.getRowCount(); i++) {
+            int total = cant * Integer.parseInt(tblproduccion.getValueAt(i, 1).toString());
+            mProdu.setValueAt(total, i, 2);
+        }
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -418,9 +444,8 @@ public class VentanaProduccion extends javax.swing.JInternalFrame {
                         .addComponent(btnactualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btneliminar))
                     .addComponent(btnagregar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -440,7 +465,7 @@ public class VentanaProduccion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(pnlproduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -448,14 +473,7 @@ public class VentanaProduccion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadActionPerformed
-        int cant = 0;
-        if (!txtcantidad.getText().replaceAll(" ", "").isEmpty()) {
-            cant = Integer.parseUnsignedInt(txtcantidad.getText().trim());
-        }
-        for (int i = 0; i < mProdu.getRowCount(); i++) {
-            int total = cant * Integer.parseInt(tblproduccion.getValueAt(i, 1).toString());
-            mProdu.setValueAt(total, i, 2);
-        }
+        calcular();
     }//GEN-LAST:event_txtcantidadActionPerformed
 
     private void tblrecetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblrecetaMouseClicked
@@ -466,7 +484,7 @@ public class VentanaProduccion extends javax.swing.JInternalFrame {
             }
         } else {
             cmbproducto2.setEnabled(false);
-            cmbmatpri.setSelectedItem(tblreceta.getValueAt(sel, 1).toString());
+            cmbmatpri.setSelectedItem(tblreceta.getValueAt(sel, 2).toString());
             txtcuantos.setText(tblreceta.getValueAt(sel, 3).toString());
             btneliminar.setEnabled(true);
             btnagregar.setText("Cancelar");
