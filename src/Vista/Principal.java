@@ -257,6 +257,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void comisionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comisionesActionPerformed
         VentanaComi comi = new VentanaComi();
+        VentaDAO ventDao = new VentaDAO();
+        VendedorDAO venDao = new VendedorDAO();
         
         System.out.println("Le diste click a comisión");
         
@@ -271,6 +273,8 @@ public class Principal extends javax.swing.JFrame {
             comi.setLocation(x,y);
             comi.setVisible(true);
         }
+        
+        CtrlComision controlComi = new CtrlComision(comi,ventDao,venDao);
     }//GEN-LAST:event_comisionesActionPerformed
 
     private void productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosActionPerformed

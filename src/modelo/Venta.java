@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.sql.Date;
+
 /**
  *
  * @author Amelia Wolf
@@ -16,18 +18,20 @@ public class Venta {
         private double total;
         private int vendedor;
         private String tipoVenta;
+        private Date fecha;
     
         //METODOS
 
     public Venta() {
     }
 
-    public Venta(int codigoVenta, int cliente, double total, int vendedor, String tipoVenta) {
+    public Venta(int codigoVenta, int cliente, double total, int vendedor, String tipoVenta, Date fecha) {
         this.codigoVenta = codigoVenta;
         this.cliente = cliente;
         this.total = total;
         this.vendedor = vendedor;
         this.tipoVenta = tipoVenta;
+        this.fecha = fecha;
     }
 
     public int getCodigoVenta() {
@@ -68,6 +72,14 @@ public class Venta {
 
     public void setTipoVenta(String tipoVenta) {
         this.tipoVenta = tipoVenta;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
         
     

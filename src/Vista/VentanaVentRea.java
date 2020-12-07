@@ -75,7 +75,8 @@ public class VentanaVentRea extends javax.swing.JInternalFrame {
                 nomVen,
                 nomCli,
                 listaVent.get(i).getTotal(),
-                listaVent.get(i).getTipoVenta(),});
+                listaVent.get(i).getTipoVenta(),
+                listaVent.get(i).getFecha()});
         }
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -93,7 +94,7 @@ public class VentanaVentRea extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Codigo Venta", "Vendedor", "Cliente", "Total", "Tipo Venta"
+                "Codigo Venta", "Vendedor", "Cliente", "Total", "Tipo Venta", "Fecha"
             }
         ));
         tblventrea.addMouseListener(new java.awt.event.MouseAdapter() {

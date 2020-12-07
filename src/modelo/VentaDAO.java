@@ -30,7 +30,7 @@ public class VentaDAO {
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "INSERT INTO venta (cliente, total, vendedor, tipoventa) values (?,?,?,?)";
+            String sql = "INSERT INTO venta (cliente, total, vendedor, tipoventa, fecha) values (?,?,?,?,now())";
             pstm = con.prepareStatement(sql);
             pstm.setInt(1, vt.getCliente());
             pstm.setDouble(2, vt.getTotal());
@@ -161,7 +161,59 @@ public class VentaDAO {
                 venta.setCliente(rs.getInt("cliente"));
                 venta.setTotal(rs.getDouble("total"));
                 venta.setVendedor(rs.getInt("vendedor"));
-                venta.setTipoVenta(rs.getString("tipoventa"));          
+                venta.setTipoVenta(rs.getString("tipoventa"));
+                venta.setFecha(rs.getDate("fecha"));
+                listado.add(venta);
+            }
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        finally{
+            try{
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return listado;
+    }
+    
+     public ArrayList<Venta> listadoVentasxVendedor(int codigovendedor){      
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        ArrayList<Venta> listado = new ArrayList<>();
+        try{
+            con = Fachada.getConnection();
+            String sql="";
+            if(codigovendedor == 0){
+                sql = "SELECT * FROM venta ORDER BY codigoventa";            
+            }else{
+                sql = "SELECT * FROM venta where vendedor = ? ";
+                    //+ "ORDER BY codigocli";      
+            }                        
+            pstm = con.prepareStatement(sql);
+            
+            if(codigovendedor != 0){
+                pstm.setInt(1, codigovendedor);
+            }
+            
+            rs = pstm.executeQuery();
+                        
+            Venta venta = null;
+            while(rs.next()){
+                venta = new Venta();
+                venta.setCodigoVenta(rs.getInt("codigoventa"));
+                venta.setCliente(rs.getInt("cliente"));
+                venta.setTotal(rs.getDouble("total"));
+                venta.setVendedor(rs.getInt("vendedor"));
+                venta.setTipoVenta(rs.getString("tipoventa"));
+                venta.setFecha(rs.getDate("fecha"));
                 listado.add(venta);
             }
         }
