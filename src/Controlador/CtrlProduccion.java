@@ -28,14 +28,19 @@ public class CtrlProduccion {
     private VentanaProduccion vistaProduccion;
     private ProduccionDAO modeloProdu;
     private ProducidosDAO modeloPr;
+    private ProductoDAO modeloPro;
+    private MateriaPrimaDAO modeloMatPri;
 
     private ArrayList<Producto> listapro;
     private ArrayList<MateriaPrima> listamatpri;
 
-    public CtrlProduccion(VentanaProduccion vistaProduccion, ProduccionDAO modeloProdu, ProducidosDAO modeloPr) {
+    public CtrlProduccion(VentanaProduccion vistaProduccion, ProduccionDAO modeloProdu, ProducidosDAO modeloPr, ProductoDAO modeloPro,
+            MateriaPrimaDAO modeloMatPri) {
         this.vistaProduccion = vistaProduccion;
         this.modeloProdu = modeloProdu;
         this.modeloPr = modeloPr;
+        this.modeloPro = modeloPro;
+        this.modeloMatPri = modeloMatPri;
 
         this.vistaProduccion.addListenerAgregar(new Listen());
         this.vistaProduccion.addListenerEliminar(new Listen());
@@ -161,26 +166,82 @@ public class CtrlProduccion {
         }
 
         public void producir() {
-            if (vistaProduccion.revisaProduccion()) {
+            if (vistaProduccion.revisaProduccion() && validarExistencia()) {
                 int x = vistaProduccion.getProducto1();
                 int pro = listapro.get(x).getCodigoPro();
                 vistaProduccion.calcular();
 
+                Producto pro2 = modeloPro.listadoProductos(pro).get(0);//
+
                 int cantidad = vistaProduccion.getCantidad();
+                pro2.setInventarioPro(cantidad + pro2.getInventarioPro());//
 
                 Producidos producidos = new Producidos();
                 producidos.setProducto(pro);
                 producidos.setCantidadProducida(cantidad);
 
                 if (modeloPr.grabarProducidos(producidos) == 1) {
+                    modeloPro.modificarProducto(pro2);//
+                    descontarMatPri();//
                     vistaProduccion.gestionMensajes("Produccion exitosa",
                             "Confirmación ", JOptionPane.INFORMATION_MESSAGE);
-                    
+
                 } else {
                     vistaProduccion.gestionMensajes("Produccion Falida",
                             "Confirmación ", JOptionPane.ERROR_MESSAGE);
                 }
             }
+        }
+
+        //
+        public boolean validarExistencia() {
+            int x = vistaProduccion.getProducto1();
+            int pro = listapro.get(x).getCodigoPro();
+            int cantidad = vistaProduccion.getCantidad();
+            String warning = "No hay suficiente ";
+            
+            boolean respuesta = true;
+            ArrayList<Produccion> produ = modeloProdu.listadoProducciones(pro);
+            for (int i = 0; i < produ.size(); i++) {
+                int idMatPri = produ.get(i).getMateriaPrima();
+                int cantnece = produ.get(i).getCantidadMatPrima();
+
+                MateriaPrima matprim = modeloMatPri.listadoMateriasPrimas(idMatPri).get(0);
+
+                int suficiente = matprim.getInventarioMatPri() - (cantnece * cantidad);
+
+                if (suficiente < 0) {
+                    respuesta = false;
+                    
+                    warning = warning + matprim.getNombreMatPri() + ", ";
+                }
+            }
+            
+            if(!respuesta){
+                vistaProduccion.gestionMensajes(warning, 
+                        "Sin materia Prima suficiente", JOptionPane.WARNING_MESSAGE);
+            }
+            return respuesta;
+        }
+        
+        public void descontarMatPri(){
+            int x = vistaProduccion.getProducto1();
+            int pro = listapro.get(x).getCodigoPro();
+            int cantidad = vistaProduccion.getCantidad();
+
+            ArrayList<Produccion> produ = modeloProdu.listadoProducciones(pro);
+            for (int i = 0; i < produ.size(); i++) {
+                int idMatPri = produ.get(i).getMateriaPrima();
+                int cantnece = produ.get(i).getCantidadMatPrima();
+
+                MateriaPrima matprim = modeloMatPri.listadoMateriasPrimas(idMatPri).get(0);
+
+                int descontar = matprim.getInventarioMatPri() - (cantnece * cantidad);
+                matprim.setInventarioMatPri(descontar);
+                
+                modeloMatPri.modificarMateriaPrima(matprim);
+            }
+            
         }
     }
 

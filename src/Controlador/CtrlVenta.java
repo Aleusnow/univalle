@@ -21,15 +21,17 @@ public class CtrlVenta {
     private VentanaVenta vistaVenta;
     private VentaDAO modeloVenta;
     private VentaDetalleDAO modeloVentDet;
+    private ProductoDAO modeloPro;
 
     private ArrayList<Producto> listaprodu;
     private ArrayList<Cliente> listacli;
     private ArrayList<Vendedor> listaven;
 
-    public CtrlVenta(VentanaVenta vistaVenta, VentaDAO modeloVenta, VentaDetalleDAO modeloVentDet) {
+    public CtrlVenta(VentanaVenta vistaVenta, VentaDAO modeloVenta, VentaDetalleDAO modeloVentDet, ProductoDAO modeloPro) {
         this.vistaVenta = vistaVenta;
         this.modeloVenta = modeloVenta;
         this.modeloVentDet = modeloVentDet;
+        this.modeloPro = modeloPro;
 
         this.vistaVenta.addListenerAgregar(new Listen());
         this.vistaVenta.addListenerTerminar(new Listen());
@@ -77,9 +79,10 @@ public class CtrlVenta {
         }
 
         public void agregar() {
-            if (vistaVenta.revisaDatos()) {
+            if (vistaVenta.revisaDatos() && validarDisponibilidad()) {
                 vistaVenta.cargarVentDet();
             }
+            
         }
 
         public void finiquitado() {
@@ -90,6 +93,7 @@ public class CtrlVenta {
                 int ven = listaven.get(venindice).getCodigoVen();
                 String tipoventa = vistaVenta.getTipoVenta();
                 double total = vistaVenta.getTotal();
+                
 
                 Venta ventita = new Venta();
                 ventita.setCliente(cli);
@@ -105,20 +109,61 @@ public class CtrlVenta {
                     Venta vent = ventas.get(ventas.size() - 1);
                     ArrayList<VentaDetalle> ventdet = new ArrayList();
                     ventdet = vistaVenta.ventadetalle();
-
+                    
                     for (int i = 0; i < ventdet.size(); i++) {
                         VentaDetalle detallote = new VentaDetalle();
                         detallote = ventdet.get(i);
                         detallote.setVenta(vent.getCodigoVenta());
                         modeloVentDet.grabarVentaDetalle(detallote);
+                        
+                        descontarProdu(detallote.getCantidad(),detallote.getProducto());//
                     }
                     vistaVenta.limpiarDatos();
                     vistaVenta.limpiarTabla();
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Ingrese minimo 1 producto thx ;)");
             }
         }
+
+        public boolean validarDisponibilidad() {
+            int x = vistaVenta.getProducto();
+            int pro = listaprodu.get(x).getCodigoPro();
+
+            int cantidad = vistaVenta.getCantidad() * vistaVenta.getCantidadCombo();
+            String warning = "No hay suficiente ";
+            
+            ArrayList<VentaDetalle> detalles = vistaVenta.ventadetalle();
+            for(int i = 0; i < detalles.size(); i++){
+                if(detalles.get(i).getProducto()== pro){
+                    cantidad = cantidad + detalles.get(i).getCantidad();
+                }
+            }
+
+            boolean respuesta = true;
+            Producto produ = modeloPro.listadoProductos(pro).get(0);
+            int suficiente = produ.getInventarioPro() - cantidad;
+            if (suficiente < 0) {
+                respuesta = false;
+
+                warning = warning + produ.getNombrePro() + " en el inventario";
+            }
+            if (!respuesta) {
+                vistaVenta.gestionMensajes(warning,
+                        "Sin Producto suficiente", JOptionPane.WARNING_MESSAGE);
+            }
+            return respuesta;
+        }
+        
+        public void descontarProdu(int cantidad, int producto){
+            
+            Producto produ = modeloPro.listadoProductos(producto).get(0);
+            int descontar = produ.getInventarioPro() - cantidad;
+            produ.setInventarioPro(descontar);
+            
+            modeloPro.modificarProducto(produ);
+        }
+
     }
 
 }

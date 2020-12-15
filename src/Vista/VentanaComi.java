@@ -302,6 +302,8 @@ public class VentanaComi extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Mes:");
 
+        txtaño.setText("2020");
+
         jLabel5.setText("Año:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

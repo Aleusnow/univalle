@@ -77,11 +77,11 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
     }
 
     public int getCodigo() {
-        return Integer.getInteger(txtcodigo.getText().trim());
+        return Integer.parseInt(txtcodigo.getText().trim());
     }
 
     public int getCantidad() {
-        return Integer.getInteger(txtcantidad.getText().trim());
+        return Integer.parseInt(txtcantidad.getText().trim());
     }
 
     public void addListenerAgregar(ActionListener listen) {
@@ -115,12 +115,22 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
         }
         txttotal.setText("0");
     }
+    
+    public int getCantidadCombo(){
+        if(cmbprecio.getSelectedIndex()== 0){
+            return 1;
+        }else if (cmbprecio.getSelectedIndex() == 1){
+            return 6;
+        }else {
+            return 12;
+        }
+    }
 
     //"Crear" tabla de Venta detalle
     public void cargarVentDet() {
 
-        int cantidad = Integer.parseInt(txtcantidad.getText());
-        double precio = (Double) cmbprecio.getSelectedItem();
+        int cantidad = Integer.parseInt(txtcantidad.getText()) * getCantidadCombo();
+        double precio = (Double) cmbprecio.getSelectedItem() /  getCantidadCombo();
         double total = cantidad * precio;
         String nombre = txtnombre.getText();
         int codigo = Integer.parseInt(txtcodigo.getText());
@@ -192,6 +202,10 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
             ventdet.add(detallito);
         }
         return ventdet;
+    }
+    
+    public void gestionMensajes(String mensaje, String titulo, int icono) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -288,9 +302,24 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Codigo ", "Producto", "Precio", "Cantidad", "Total"
+                "Codigo ", "Producto", "Precio Unitario", "Cantidad", "Total"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbldetventa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbldetventaMouseClicked(evt);
@@ -299,7 +328,8 @@ public class VentanaVenta extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tbldetventa);
         if (tbldetventa.getColumnModel().getColumnCount() > 0) {
             tbldetventa.getColumnModel().getColumn(0).setMaxWidth(60);
-            tbldetventa.getColumnModel().getColumn(2).setMaxWidth(60);
+            tbldetventa.getColumnModel().getColumn(2).setMinWidth(100);
+            tbldetventa.getColumnModel().getColumn(2).setMaxWidth(130);
             tbldetventa.getColumnModel().getColumn(3).setMaxWidth(60);
             tbldetventa.getColumnModel().getColumn(4).setMaxWidth(80);
         }

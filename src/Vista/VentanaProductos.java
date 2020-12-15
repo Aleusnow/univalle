@@ -116,6 +116,8 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Cantidad:");
 
+        txtcantidad.setEditable(false);
+
         txtcodigo.setEditable(false);
 
         btnagregar.setText("Agregar");

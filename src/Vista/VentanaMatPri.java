@@ -132,6 +132,8 @@ public class VentanaMatPri extends javax.swing.JInternalFrame {
 
         lblcantidad.setText("Cantidad:");
 
+        txtcantidad.setEditable(false);
+
         txtcodigo.setEditable(false);
 
         btnagregar.setText("Agregar");

@@ -322,6 +322,8 @@ public class Principal extends javax.swing.JFrame {
         VentanaProduccion produ = new VentanaProduccion();
         ProduccionDAO produDao = new ProduccionDAO();
         ProducidosDAO prDao = new ProducidosDAO();
+        ProductoDAO proDao = new ProductoDAO();
+        MateriaPrimaDAO matpriDao = new MateriaPrimaDAO();
         
         System.out.println("Le diste click a produccion");
         
@@ -336,13 +338,14 @@ public class Principal extends javax.swing.JFrame {
             produ.setLocation(x,y);
             produ.setVisible(true);
         }
-        CtrlProduccion controlProdu = new CtrlProduccion(produ,produDao,prDao);
+        CtrlProduccion controlProdu = new CtrlProduccion(produ,produDao,prDao, proDao,matpriDao);
     }//GEN-LAST:event_produccionActionPerformed
 
     private void ingresomatpriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresomatpriActionPerformed
         VentanaIngMatPri ing = new VentanaIngMatPri();
         IngresoDAO ingDao = new IngresoDAO();
         IngresoDetalleDAO ingDetDao = new IngresoDetalleDAO();
+        MateriaPrimaDAO matpriDao = new MateriaPrimaDAO();
         
         System.out.println("Le diste click a ingreso materia prima");
         
@@ -358,7 +361,7 @@ public class Principal extends javax.swing.JFrame {
             ing.setVisible(true);
         }
         
-        CtrlIngreso controlIng = new CtrlIngreso(ing, ingDao,  ingDetDao);
+        CtrlIngreso controlIng = new CtrlIngreso(ing, ingDao,  ingDetDao,matpriDao);
 
     }//GEN-LAST:event_ingresomatpriActionPerformed
 
@@ -366,6 +369,7 @@ public class Principal extends javax.swing.JFrame {
         VentanaVenta vent = new VentanaVenta();
         VentaDAO ventaDao = new VentaDAO();
         VentaDetalleDAO ventDetDao = new VentaDetalleDAO();
+        ProductoDAO proDao = new ProductoDAO();
         
         System.out.println("Le diste click a venta");
         
@@ -381,7 +385,7 @@ public class Principal extends javax.swing.JFrame {
             vent.setVisible(true);
         }
         
-        CtrlVenta controlVen = new CtrlVenta(vent,ventaDao,ventDetDao);
+        CtrlVenta controlVen = new CtrlVenta(vent,ventaDao,ventDetDao,proDao);
     }//GEN-LAST:event_ventaActionPerformed
 
     private void listadovenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listadovenActionPerformed

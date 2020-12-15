@@ -30,14 +30,16 @@ public class CtrlIngreso {
     private VentanaIngMatPri vistaIngreso;
     private IngresoDAO modeloIngreso;
     private IngresoDetalleDAO modeloIngDet;
+    private MateriaPrimaDAO modeloMatPri;
 
     private ArrayList<Distribuidor> listadis;
     private ArrayList<MateriaPrima> listamatpri;
 
-    public CtrlIngreso(VentanaIngMatPri vistaIngreso, IngresoDAO modeloIngreso, IngresoDetalleDAO modeloIngDet) {
+    public CtrlIngreso(VentanaIngMatPri vistaIngreso, IngresoDAO modeloIngreso, IngresoDetalleDAO modeloIngDet, MateriaPrimaDAO modeloMatPri) {
         this.vistaIngreso = vistaIngreso;
         this.modeloIngreso = modeloIngreso;
         this.modeloIngDet = modeloIngDet;
+        this.modeloMatPri = modeloMatPri;
         
         this.vistaIngreso.addListenerAgregar(new Listen());
         this.vistaIngreso.addListenerTerminar(new Listen());
@@ -110,6 +112,8 @@ public class CtrlIngreso {
                         detallote = ingdet.get(i);
                         detallote.setIngreso(ing.getCodigoIng());
                         modeloIngDet.grabarIngresoDetalle(detallote);
+                        
+                        aumentarMatPri(detallote.getCantidad(),detallote.getMatPrima());//
                     }
                     vistaIngreso.limpiarDatos();
                     vistaIngreso.limpiarTabla();
@@ -117,6 +121,15 @@ public class CtrlIngreso {
             }else{
                 JOptionPane.showMessageDialog(null, "Ingrese minimo 1 materia prima thx ;)");
             }
+        }
+        
+        public void aumentarMatPri(int cantidad, int matpri){
+            
+            MateriaPrima matprim = modeloMatPri.listadoMateriasPrimas(matpri).get(0);
+            int aumentar = matprim.getInventarioMatPri() + cantidad;
+            matprim.setInventarioMatPri(aumentar);
+            
+            modeloMatPri.modificarMateriaPrima(matprim);
         }
     }
     
