@@ -116,8 +116,6 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Cantidad:");
 
-        txtcantidad.setEditable(false);
-
         txtcodigo.setEditable(false);
 
         btnagregar.setText("Agregar");
@@ -281,8 +279,11 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
             btneliminar.setEnabled(true);
             btnagregar.setText("Cancelar");
             btnagregar.setActionCommand("cancelar");
+            
+            txtcantidad.setEditable(false);
         }
     }//GEN-LAST:event_tblproductosMouseClicked
+    
     
     //Haciendo Listeners de los txt y btn
     public int getCodigo() {
@@ -354,6 +355,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
     }
     
     public void cancelarAction() {
+        txtcantidad.setEditable(true); //
         btneliminar.setEnabled(false);
         btnactualizar.setEnabled(false);
         btnagregar.setText("Agregar");

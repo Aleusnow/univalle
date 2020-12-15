@@ -86,6 +86,7 @@ public class VentanaMatPri extends javax.swing.JInternalFrame {
     }
     
     public void cancelarAction() {
+        txtcantidad.setEditable(true); //
         btneliminar.setEnabled(false);
         btnactualizar.setEnabled(false);
         btnagregar.setText("Agregar");
@@ -131,8 +132,6 @@ public class VentanaMatPri extends javax.swing.JInternalFrame {
         lblnombre.setText("Nombre:");
 
         lblcantidad.setText("Cantidad:");
-
-        txtcantidad.setEditable(false);
 
         txtcodigo.setEditable(false);
 
@@ -277,6 +276,8 @@ public class VentanaMatPri extends javax.swing.JInternalFrame {
             btneliminar.setEnabled(true);
             btnagregar.setText("Cancelar");
             btnagregar.setActionCommand("cancelar");
+            
+            txtcantidad.setEditable(false);
         }
     }//GEN-LAST:event_tblmatprisMouseClicked
  
